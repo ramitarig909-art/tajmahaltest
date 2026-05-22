@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script>
+/* About page never shows the intro; mark it seen so the home page won't replay it either. */
+try{ sessionStorage.setItem('tmIntroSeen','1'); document.documentElement.className += ' intro-seen'; }catch(e){}
+</script>
 <title>About Us | Taj Mahal Jewellery — Nasr City, Cairo</title>
 
 <!-- ─── PRIMARY SEO META ─── -->
@@ -473,8 +477,13 @@ footer{
 
 /* ─── WHATSAPP FLOAT ─── */
 .wa-float{
-  position:fixed;bottom:2rem;right:2rem;z-index:200;
+  position:fixed;bottom:2rem;right:2rem;left:auto;z-index:200;
   display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;
+  direction:ltr;
+}
+/* Keep the WhatsApp button pinned bottom-right even in Arabic (RTL) */
+body.ar .wa-float{
+  right:2rem;left:auto;direction:ltr;align-items:flex-end;
 }
 .wa-tooltip{
   background:var(--white);color:var(--deep);font-size:.82rem;
@@ -751,7 +760,8 @@ body.ar .dropdown-menu a:hover{
   .section-title{font-size:1.7rem;}
   .prod-info{padding:1rem 1rem 1.2rem;}
   .prod-btn{font-size:.78rem;padding:.65rem;}
-  .wa-float{bottom:1.2rem;right:1.2rem;}
+  .wa-float{bottom:1.2rem;right:1.2rem;left:auto;align-items:flex-end;}
+  body.ar .wa-float{right:1.2rem;left:auto;}
   section{padding:3.5rem .9rem;}
 }
 
