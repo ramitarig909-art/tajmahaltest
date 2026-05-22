@@ -1069,6 +1069,8 @@ body.ar .lb-close{right:auto;left:14px;}
 
 <script>
 // ─── INTRO (disabled on About page — opens directly, no intro animation) ───
+// Mark the intro as seen so it won't play if the visitor heads to the home page next.
+try{ sessionStorage.setItem('tmIntroSeen','1'); }catch(e){}
 function buildIntroSparkles(){
   const c=document.getElementById('introSparkles');
   if(!c) return;
